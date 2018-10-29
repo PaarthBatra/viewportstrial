@@ -111,6 +111,8 @@ public class VPBSplashScreen implements Screen {
         Gdx.app.log("LOG","cam.position.x " + cam.position.x);
         Gdx.app.log("LOG","cam.position.y : " + cam.position.y);
         Gdx.app.log("LOG","Aspect Ratio: " + aspectRaio);
+        Gdx.app.log("LOG","pixelsToScreen_Width_Ratio: " + pixelsToScreen_Width_Ratio);
+        Gdx.app.log("LOG","pixelsToScreen_Height_Ratio: " + pixelsToScreen_Height_Ratio);
 
 
 
@@ -160,7 +162,7 @@ public class VPBSplashScreen implements Screen {
     }
 
     private void update(){
-        if(widthofLine <  w )
+        if(widthofLine <  w  + GameInfo.LineAdjustmentOffsetX)
             widthofLine += 10;
 
     }
@@ -188,6 +190,9 @@ public class VPBSplashScreen implements Screen {
 
     @Override
     public void dispose() {
+        generator.dispose();
+        srend.dispose();
+        font.dispose();
 
     }
 }
