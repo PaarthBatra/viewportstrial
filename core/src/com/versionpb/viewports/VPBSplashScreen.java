@@ -58,7 +58,7 @@ public class VPBSplashScreen implements Screen {
         parameter.flip = false;
         font = generator.generateFont(parameter);
 
-        splashBGImage = new Sprite(new Texture(Gdx.files.internal("splash.jpg")));
+        splashBGImage = new Sprite(new Texture(Gdx.files.internal("NiceGameBg.png")));
 
 
         Screen_Width = GameInfo.GAME_WIDTH;
@@ -85,7 +85,7 @@ public class VPBSplashScreen implements Screen {
 
 
 
-        str = "VersionPB";
+        str = GameInfo.str;
         glyphLayout = new GlyphLayout();
         glyphLayout.setText(font, str);
         w = glyphLayout.width;
@@ -130,7 +130,7 @@ public class VPBSplashScreen implements Screen {
         game.getBatch().draw(splashBGImage,0,0,cam.viewportWidth,cam.viewportHeight);
         //splashBGImage.draw(game.getBatch(),0,0,GameInfo.GAME_WIDTH,GameInfo.GAME_HEIGHT);
 
-        str="VersionPB";
+        str=GameInfo.str;
         if (numchars < str.length()) { // if num of chars are lesser than string length , if all chars are not parsed
             ctimeperchar += delta; // character time per char to be added with delta
             if (ctimeperchar >= TIMEPERCHAR) { // if c time ie greater than time // for 1 char
@@ -144,12 +144,12 @@ public class VPBSplashScreen implements Screen {
         font.draw(game.getBatch(), str, cam.viewportWidth / 2 - w / 2, cam.viewportHeight / 2 + h / 2);
         game.getBatch().end();
 
-        if(str.equalsIgnoreCase("VersionPB")) {
+        if(str.equalsIgnoreCase(GameInfo.str)) {
             srend.begin(ShapeRenderer.ShapeType.Filled);
             srend.setColor(GameInfo.SplashScreenUnderLineColor);
             srend.rectLine( (cam.viewportWidth / 2 - w / 2 + GameInfo.LineOffsetX) * pixelsToScreen_Width_Ratio,
                     (cam.viewportHeight/ 2 - h) * pixelsToScreen_Height_Ratio,
-                    (widthofLine + GameInfo.LineOffsetX) * pixelsToScreen_Width_Ratio,
+                    (widthofLine + GameInfo.LineOffsetX + GameInfo.LineAdjustmentOffsetX) * pixelsToScreen_Width_Ratio,
                     (cam.viewportHeight/ 2 - h) * pixelsToScreen_Height_Ratio,
                     GameInfo.Rectangle_Width);
 
@@ -160,7 +160,7 @@ public class VPBSplashScreen implements Screen {
     }
 
     private void update(){
-        if(widthofLine <   w )
+        if(widthofLine <  w )
             widthofLine += 10;
 
     }
